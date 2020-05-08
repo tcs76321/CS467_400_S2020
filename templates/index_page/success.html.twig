@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Success{% endblock %}
+
+{% block body %}
+    <style>
+        *.body {
+            text-align: center;
+            border: 3px solid green;
+        }
+    </style>
+    <div class="body">
+        <h3>Success creating an account!</h3>
+        <h4>Login now below:</h4>
+        <a href="{{ path('app_login') }}">Existing User Log In</a>
+    </div>
+{% endblock %}
