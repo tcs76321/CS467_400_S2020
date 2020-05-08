@@ -61,6 +61,11 @@ class Tribe
      */
     private $day;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="tribe", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -170,6 +175,24 @@ class Tribe
     public function setDay(int $day): self
     {
         $this->day = $day;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newTribe = null === $user ? null : $this;
+        if ($user->getTribe() !== $newTribe) {
+            $user->setTribe($newTribe);
+        }
 
         return $this;
     }
