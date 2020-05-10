@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -72,7 +74,12 @@ class Tribe
      */
     private $Location;
 
-    public function __construct($user)
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Name;
+
+    public function __construct($user, EntityManagerInterface $entityManager)
     {
         $this->user = $user;
         $this->day = 0;
@@ -84,6 +91,11 @@ class Tribe
         $this->adults = 10;
         $this->children = 2;
         $this->babies = 0;
+
+        $repository = $entityManager->getRepository(Locale::class);
+        // look for a single Product by its primary key (usually "id")
+        $locale = $repository->find(1);
+        $this->Location = $locale;
     }
 
     public function getId(): ?int
@@ -225,6 +237,18 @@ class Tribe
     public function setLocation(?Locale $Location): self
     {
         $this->Location = $Location;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->Name;
+    }
+
+    public function setName(?string $Name): self
+    {
+        $this->Name = $Name;
 
         return $this;
     }

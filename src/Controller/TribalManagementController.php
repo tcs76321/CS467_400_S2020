@@ -14,6 +14,8 @@ class TribalManagementController extends AbstractController
     {
         return $this->render('tribal_management/index.html.twig', [
             'controller_name' => 'TribalManagementController',
+            'user' => $this->getUser(),
+            'tribe' => $this->getUser()->getTribe()
         ]);
     }
 }

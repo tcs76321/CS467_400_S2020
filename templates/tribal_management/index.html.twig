@@ -1,20 +1,110 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TribalManagementController!{% endblock %}
+{% block title %}Tribal Management{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    *.body {
+        text-align: center;
+        border: 3px solid green;
+        border-spacing: 10px;
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="body">
+    <h2>World Map of Odysseyia:</h2>
+    <img src="{{ asset('images/homePageSymbol.png') }}" alt="Symfony!"/>
+    <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+        {% if user %}
+            <h3>
+                Hello, {{ user.email }}!
+            </h3>
+            {#            //Overview#}
+            <h3>
+                Tribal Overview:
+            </h3>
+            <p>
+                <b>Name:</b> {% if tribe.name %}{{ tribe.name }}{% else %}Nameless{% endif %}
+            </p>
+            <p>
+                <b>Location:</b> {% if tribe.location %}{{ tribe.Location.Name }}{% else %}ERROR{% endif %}
+            </p>
+            <p>
+                <b>Babies:</b> {% if tribe %}{{ tribe.babies }}{% endif %}
+            </p>
+            <p>
+                <b>Children:</b> {% if tribe %}{{ tribe.children }}{% endif %}
+            </p>
+            <p>
+                <b>Adults:</b> {% if tribe %}{{ tribe.adults }}{% endif %}
+            </p>
+            <p>
+                <b>Elders:</b> {% if tribe %}{{ tribe.elders }}{% endif %}
+            </p>
+            <p>
+                <b>Horses:</b> {% if tribe %}{{ tribe.horses }}{% endif %}
+            </p>
+            <p>
+                <b>Dogs:</b> {% if tribe %}{{ tribe.dogs }}{% endif %}
+            </p>
+            <p>
+                <b>Focus:</b> {% if tribe.focus is null %}You haven't decided yet. It will be chosen randomly if you do not before the next day.{% else %}{{ tribe.focus }}{% endif %}
+            </p>
+            <p>
+                <b>Direction:</b> {% if tribe.direction is null %}You haven't decided yet. It will be chosen randomly if you do not before the next day.{% else %}{{ tribe.direction}}{% endif %}
+            </p>
+            <p>
+                <b>Day:</b> {% if tribe %}{{ tribe.day }}{% else %}ERROR{% endif %}
+            </p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/trevor/data/dev/symfonyWebApps/TribalOdyssey/src/Controller/TribalManagementController.php'|file_link(0) }}">src/Controller/TribalManagementController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/trevor/data/dev/symfonyWebApps/TribalOdyssey/templates/tribal_management/index.html.twig'|file_link(0) }}">templates/tribal_management/index.html.twig</a></code></li>
-    </ul>
+            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
+{#            //Management#}
+
+{#            Name#}
+
+{#            Focus#}
+
+{#            Direction#}
+
+            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
+{#            //Development ONLY day button#}
+
+{#            <a href="{{ path('app_register') }}">Create A New User Account</a>    #}
+
+            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
+            <a href="{{ path('app_logout') }}">LOG OUT</a>
+
+
+        {% else %}
+
+            <h3>
+                You are not logged in. Make an account below:
+            </h3>
+            <a href="{{ path('app_register') }}">Create A New User Account</a>
+            <br>
+        {% endif %}
 </div>
 {% endblock %}
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}Hello TribalManagementController!{% endblock %}#}
+
+{#{% block body %}#}
+{#    <style>#}
+{#        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
+{#        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
+{#    </style>#}
+
+{#    <div class="example-wrapper">#}
+{#        <h1>Hello {{ controller_name }}! ✅</h1>#}
+
+{#        This friendly message is coming from:#}
+{#        <ul>#}
+{#            <li>Your controller at <code><a href="{{ '/home/trevor/data/dev/symfonyWebApps/TribalOdyssey/src/Controller/TribalManagementController.php'|file_link(0) }}">src/Controller/TribalManagementController.php</a></code></li>#}
+{#            <li>Your template at <code><a href="{{ '/home/trevor/data/dev/symfonyWebApps/TribalOdyssey/templates/tribal_management/index.html.twig'|file_link(0) }}">templates/tribal_management/index.html.twig</a></code></li>#}
+{#        </ul>#}
+{#    </div>#}
+{#{% endblock %}#}
