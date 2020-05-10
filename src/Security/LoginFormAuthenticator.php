@@ -92,15 +92,16 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($targetPath);
-        }
+//        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+//            return new RedirectResponse($targetPath);
+//        }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
         //Here! we need to go to a secure profile page that only player can access and that allows for creation of tribes and going to the tribal management page
         // The tribal management page also needs to be secured and then display either a static page if user.tribe is null or populated based on the tribe
-        // TODO: TODO: TODO:
+        return new RedirectResponse($this->urlGenerator->generate('tribal_management'));
+
     }
 
     protected function getLoginUrl()

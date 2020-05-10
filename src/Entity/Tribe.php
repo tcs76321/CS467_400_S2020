@@ -66,6 +66,20 @@ class Tribe
      */
     private $user;
 
+    public function __construct($user)
+    {
+        $this->user = $user;
+        $this->day = 0;
+        $this->direction = NULL;
+        $this->focus = NULL;
+        $this->dogs = 3;
+        $this->horses = 0;
+        $this->elders = 0;
+        $this->adults = 10;
+        $this->children = 2;
+        $this->babies = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

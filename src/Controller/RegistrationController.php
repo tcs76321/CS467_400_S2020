@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Tribe;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
@@ -23,7 +24,8 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -33,6 +35,13 @@ class RegistrationController extends AbstractController
             );
 
             $entityManager = $this->getDoctrine()->getManager();
+
+            $tribe = new Tribe($user);
+            $entityManager->persist($tribe);
+            $entityManager->flush();
+
+            $user->setTribe($tribe);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
