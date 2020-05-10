@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LocaleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,16 @@ class Locale
      * @ORM\OneToOne(targetEntity=Locale::class, cascade={"persist", "remove"})
      */
     private $West;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tribe::class, mappedBy="Location")
+     */
+    private $tribes;
+
+    public function __construct()
+    {
+        $this->tribes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +166,37 @@ class Locale
     public function setWest(?self $West): self
     {
         $this->West = $West;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tribe[]
+     */
+    public function getTribes(): Collection
+    {
+        return $this->tribes;
+    }
+
+    public function addTribe(Tribe $tribe): self
+    {
+        if (!$this->tribes->contains($tribe)) {
+            $this->tribes[] = $tribe;
+            $tribe->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTribe(Tribe $tribe): self
+    {
+        if ($this->tribes->contains($tribe)) {
+            $this->tribes->removeElement($tribe);
+            // set the owning side to null (unless already changed)
+            if ($tribe->getLocation() === $this) {
+                $tribe->setLocation(null);
+            }
+        }
 
         return $this;
     }

@@ -66,6 +66,12 @@ class Tribe
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Locale::class, inversedBy="tribes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Location;
+
     public function __construct($user)
     {
         $this->user = $user;
@@ -207,6 +213,18 @@ class Tribe
         if ($user->getTribe() !== $newTribe) {
             $user->setTribe($newTribe);
         }
+
+        return $this;
+    }
+
+    public function getLocation(): ?Locale
+    {
+        return $this->Location;
+    }
+
+    public function setLocation(?Locale $Location): self
+    {
+        $this->Location = $Location;
 
         return $this;
     }
