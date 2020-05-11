@@ -18,7 +18,8 @@
             </h3>
             <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
             <h2>World Map of Odysseyia:</h2>
-            <img src="{{ asset('images/homePageSymbol.png') }}" alt="Symfony!"/>
+{#            <img src="{{ asset('images/worldMap.png') }}" alt="Symfony!"/>#}
+
 
             <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
             {#            //Overview#}
@@ -61,12 +62,24 @@
 
             <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
 
-{#            //Management#}
+
+            <h3>
+                Scouting Reports:
+            </h3>
+
+            <h4>Here: </h4>
+            <p>You are at '{{ tribe.Location.Name }}'.<p></p> {{ Locale.Description }}<p></p> The local fertility is {{ Locale.fertility }}. The local danger is {{ Locale.danger }}. The type is {{ Locale.type }}</p><h4>{{ Locale }}</h4>
+            <h4>North: {{ Locale.North }}</h4>
+            <h4>East: {{ Locale.East }}</h4>
+            <h4>South: {{ Locale.South }}</h4>
+            <h4>West: {{ Locale.West }}</h4>
+
+            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
             <h3>
                 Tribal Management Choices:
             </h3>
             <p>
-            {#            Name#}
             <a href="{{ path('app_changeName') }}">Update your name</a>
             </p>
             <p>

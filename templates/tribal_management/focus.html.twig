@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Change Focus{% endblock %}
 
 {% block body %}
     <style>
@@ -12,6 +12,14 @@
     </style>
 
     <div class="body">
-        <h1>Hello focus</h1>
+        <h1>Change Focus</h1>
+        <h1>Does Nothing right now</h1>
+
+        {{ form_start(form) }}
+        {{ form_row(form.Focus) }}
+        <div><p> </p></div>
+        <button type="submit" class="btn">Submit</button>
+        {{ form_end(form) }}
+
     </div>
 {% endblock %}

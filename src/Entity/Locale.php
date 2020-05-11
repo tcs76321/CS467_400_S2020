@@ -64,6 +64,11 @@ class Locale
      */
     private $tribes;
 
+    /**
+     * @ORM\Column(type="string", length=1000, nullable=true)
+     */
+    private $Description;
+
     public function __construct()
     {
         $this->tribes = new ArrayCollection();
@@ -203,5 +208,17 @@ class Locale
 
     public function __toString(){
         return strval($this->getId());
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(?string $Description): self
+    {
+        $this->Description = $Description;
+
+        return $this;
     }
 }

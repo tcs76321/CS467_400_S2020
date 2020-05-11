@@ -12,6 +12,11 @@
     </style>
 
     <div class="body">
-        <h1>Hello direction</h1>
+        <h1>Change direction</h1>
+        {{ form_start(form) }}
+        {{ form_row(form.direction) }}
+        <div><p> </p></div>
+        <button type="submit" class="btn">Submit</button>
+        {{ form_end(form) }}
     </div>
 {% endblock %}
