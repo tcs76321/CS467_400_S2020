@@ -88,7 +88,7 @@ class Tribe
         $this->dogs = 3;
         $this->horses = 0;
         $this->elders = 0;
-        $this->adults = 10;
+        $this->adults = 40;
         $this->children = 2;
         $this->babies = 0;
 
@@ -96,6 +96,47 @@ class Tribe
         // look for a single Product by its primary key (usually "id")
         $locale = $repository->find(1);
         $this->Location = $locale;
+    }
+
+    public function endDay(Tribe $tribe, EntityManagerInterface $manager)
+    {
+        //Random Events
+
+        //Basic Dynamics
+        $tribe->incrementDay($manager);
+        $tribe->changeLocation($manager);
+        $manager->flush();
+    }
+
+    public function incrementDay(EntityManagerInterface $manager)
+    {
+        $this->setDay($this->getDay() + 1);
+        $manager->flush();
+    }
+
+    public function changeLocation(EntityManagerInterface $manager)
+    {
+        $direction = $this->getDirection();
+        if($direction)
+        {
+            if(($direction == 'North') && $this->getLocation()->getNorth())
+            {
+                $this->setLocation($this->getLocation()->getNorth());
+            }
+            elseif (($direction == 'South') && $this->getLocation()->getSouth())
+            {
+                $this->setLocation($this->getLocation()->getSouth());
+            }
+            elseif (($direction == 'East') && $this->getLocation()->getEast())
+            {
+                $this->setLocation($this->getLocation()->getEast());
+            }
+            elseif (($direction == 'West') && $this->getLocation()->getWest())
+            {
+                $this->setLocation($this->getLocation()->getWest());
+            }
+            $manager->flush();
+        }
     }
 
     public function getId(): ?int

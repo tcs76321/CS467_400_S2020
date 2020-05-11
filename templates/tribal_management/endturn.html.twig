@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ended Turn{% endblock %}
+
+{% block body %}
+    <style>
+        *.body {
+            text-align: center;
+            border: 3px solid green;
+        }
+    </style>
+    <div class="body">
+        <h3>Success ending the day/turn!</h3>
+        <h4>Continue now below:</h4>
+        <a href="{{ path('tribal_management') }}">Back to TM page</a>
+    </div>
+{% endblock %}

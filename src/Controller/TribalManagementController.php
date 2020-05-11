@@ -7,6 +7,7 @@ use App\Form\ChangeDirectionType;
 use App\Form\ChangeFocusType;
 use App\Form\ChangeNameType;
 use App\Form\RegistrationFormType;
+use App\Repository\TribeRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -170,6 +171,22 @@ class TribalManagementController extends AbstractController
     public function tutorial()
     {
         return $this->render('tribal_management/tutorial.html.twig', [
+            'controller_name' => 'TribalManagementController'
+        ]);
+    }
+
+    /**
+     * @Route("/tribal/endturn", name="tribal_endturn")
+     * @return Response
+     */
+    public function endturn()
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $tribe = $this->getUser()->getTribe();
+        $tribe->endDay($tribe, $manager);
+
+        //Redirect back the tribal management page
+        return $this->render('tribal_management/endturn.html.twig', [
             'controller_name' => 'TribalManagementController'
         ]);
     }
