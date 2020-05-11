@@ -104,6 +104,8 @@ class Tribe
 
         //Basic Dynamics
         $tribe->incrementDay($manager);
+        $tribe->updateBaseValues($manager);
+        //change location last
         $tribe->changeLocation($manager);
         $manager->flush();
     }
@@ -137,6 +139,24 @@ class Tribe
             }
             $manager->flush();
         }
+    }
+
+    public function updateBaseValues(EntityManagerInterface $manager)
+    {
+        //babies
+        $this->setBabies($this->getBabies() + 1);
+        //children
+        $this->setChildren($this->getChildren() + 1);
+        //adults
+        $this->setAdults($this->getAdults() + 1);
+        //elders
+        $this->setElders($this->getElders() + 1);
+        //horses
+        $this->setHorses($this->getHorses() + 1);
+        //dogs
+        $this->setDogs($this->getDogs() + 1);
+
+        $manager->flush();
     }
 
     public function getId(): ?int
