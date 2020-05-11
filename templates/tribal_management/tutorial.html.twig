@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutorial{% endblock %}
+
+{% block body %}
+    <style>
+        *.body {
+            text-align: center;
+            border: 3px solid green;
+        }
+    </style>
+    <div class="body">
+        <h3>Tutorial</h3>
+
+        <p>Each 'day' you decide upon the aims of your tribe. This includes things like direction, and focus.</p>
+        <p>Currently focus can be set but does nothing.</p>
+        <p>Direction is of course where your tribe will be the next 'day'.</p>
+        <p>In the completed envision version of gameplay, each 'day' will pass as an actual day in real life. But will be around a few weeks for your virtual in-game tribe.</p>
+        <p>Currently, there is no multi-player either and you simulate days and play the game by clicking a button at the bottom of the tribal management page.</p>
+        <p>The game is essentially in a proof of concept early development phase. All of the dynamics that will make the basic game play, which has been implemented largely, have not been implemented yet.</p>
+        <p>This tutorial will be updated with development</p>
+        <p>Right now you can do the following:</p>
+        <p>Create a new account</p>
+        <p>Login</p>
+        <p>Read this tutorial</p>
+        <p>Rename your tribe</p>
+        <p>Type in the direction and focus of your tribe</p>
+        <p>And logout</p>
+        <h5><a href="{{ path('tribal_management') }}">Back To Home Page</a></h5>
+    </div>
+{% endblock %}

@@ -163,4 +163,14 @@ class TribalManagementController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/tribal/tutorial", name="tribal_tutorial")
+     */
+    public function tutorial()
+    {
+        return $this->render('tribal_management/tutorial.html.twig', [
+            'controller_name' => 'TribalManagementController'
+        ]);
+    }
 }
