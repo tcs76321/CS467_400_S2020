@@ -13,99 +13,164 @@
 
 <div class="body">
         {% if user %}
-            <h3>
-                Hello, {{ user.email }}!
-            </h3>
+            {% if user.tribe.checkIfWon %}
+                <h3>
+                    Hello, {{ user.email }}!
+                </h3>
+                <h2>
+                    VICTORY!
+                </h2>
+                <h4>
+                    Your tribe has become fully sedentary!
+                </h4>
 
-            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+                <a href="{{ path('tribal_restart') }}">Restart with a fresh tribe state at day 0!</a>
 
-            <h5><a href="{{ path('tribal_tutorial') }}">Tutorial</a></h5>
+                <a href="{{ path('app_logout') }}">LOG OUT</a>
+            {% elseif user.tribe.checkIfAlive %}
+                <h3>
+                    Hello, {{ user.email }}!
+                </h3>
 
-            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
 
-            <h2>World Map of Odysseyia:</h2>
-            <img src="{{ asset('images/worldMap.png') }}" width="500" height="500" alt="Symfony!"/>
+                <h5><a href="{{ path('tribal_tutorial') }}">Tutorial</a></h5>
 
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
 
-            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
-            {#            //Overview#}
-            <h3>
-                Tribal Overview:
-            </h3>
-            <p>
-                <b>Name:</b> {% if tribe.name %}{{ tribe.name }}{% else %}Nameless{% endif %}
-            </p>
-            <p>
-                <b>Location:</b> {% if tribe.location %}{{ tribe.Location.Name }}{% else %}ERROR{% endif %}
-            </p>
-            <p>
-                <b>Babies:</b> {% if tribe %}{{ tribe.babies }}{% endif %}
-            </p>
-            <p>
-                <b>Children:</b> {% if tribe %}{{ tribe.children }}{% endif %}
-            </p>
-            <p>
-                <b>Adults:</b> {% if tribe %}{{ tribe.adults }}{% endif %}
-            </p>
-            <p>
-                <b>Elders:</b> {% if tribe %}{{ tribe.elders }}{% endif %}
-            </p>
-            <p>
-                <b>Horses:</b> {% if tribe %}{{ tribe.horses }}{% endif %}
-            </p>
-            <p>
-                <b>Dogs:</b> {% if tribe %}{{ tribe.dogs }}{% endif %}
-            </p>
-            <p>
-                <b>Focus:</b> {% if tribe.focus is null %}You haven't decided yet. It will be chosen randomly if you do not before the next day.{% else %}{{ tribe.focus }}{% endif %}
-            </p>
-            <p>
-                <b>Direction:</b> {% if tribe.direction is null %}You haven't decided yet. It will be chosen randomly if you do not before the next day.{% else %}{{ tribe.direction}}{% endif %}
-            </p>
-            <p>
-                <b>Day:</b> {% if tribe %}{{ tribe.day }}{% else %}ERROR{% endif %}
-            </p>
-
-            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+                <h2>World Map of Odysseyia:</h2>
+                <img src="{{ asset('images/worldMap.png') }}" width="500" height="500" alt="Symfony!"/>
 
 
-            <h3>
-                Scouting Reports:
-            </h3>
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+                {#            // Random event#}
+                <h3>
+                    Random Event Results:
+                    <p>Event: {% if tribe.event %}{{ tribe.event }}{% else %}None{% endif %}</p>
+                    {% if tribe.event %}
+                        <p>
+                            {% if tribe.event == "Found a Horse" %}
+                                One of your younger tribeswomen found a horse in the woods. She was able to coax and relax it enough to put a rope around the horse's neck and lead it to camp.
+                                <br/>Great Luck!
+                            {% elseif tribe.event == "Found a few Dogs" %}
+                                A few of the more mischievous tribes members have been feeding some of the smaller wolves that follow the tribe and are not particularly aggressive.
+                                <br/>They have become reliable yet furry members of the tribe!
+                            {% elseif tribe.event == "Dire Wolf Attack" %}
+                                One of the monstrous wolves that we all fear to cross paths with has caught a few of our tribe's members out and about away from camp.
+                                <br/>They never came back...
+                            {% elseif tribe.event == "Beautiful Weather" %}
+                                The weather has been amazing!
+                                <br/>Nothing unique or of note has happened lately though.
+                            {% elseif tribe.event == "Comet Sighting" %}
+                                A beautiful multi-color comet has recently graced the sky above.
+                                <br/>The Elders say this is a good omen!
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                </h3>
 
-            <h4>Here: </h4>
-            <p>You are at '{{ tribe.Location.Name }}'.<p></p> {{ Locale.Description }}<p></p> The local fertility is {{ Locale.fertility }}. The local danger is {{ Locale.danger }}. The type is {{ Locale.type }}</p><h4>{{ Locale }}</h4>
-            <h4>North: {{ Locale.North }}</h4>
-            <h4>East: {{ Locale.East }}</h4>
-            <h4>South: {{ Locale.South }}</h4>
-            <h4>West: {{ Locale.West }}</h4>
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+                {#            //Overview#}
+                <h3>
+                    Tribal Overview:
+                </h3>
+                <p>
+                    <b>Name:</b> {% if tribe.name %}{{ tribe.name }}{% else %}Nameless{% endif %}
+                </p>
+                <p>
+                    <b>Location:</b> {% if tribe.location %}{{ tribe.Location.Name }}{% else %}ERROR{% endif %}
+                </p>
+                <p>
+                    <b>Babies:</b> {% if tribe %}{{ tribe.babies }}{% endif %}
+                </p>
+                <p>
+                    <b>Children:</b> {% if tribe %}{{ tribe.children }}{% endif %}
+                </p>
+                <p>
+                    <b>Adults:</b> {% if tribe %}{{ tribe.adults }}{% endif %}
+                </p>
+                <p>
+                    <b>Elders:</b> {% if tribe %}{{ tribe.elders }}{% endif %}
+                </p>
+                <p>
+                    <b>Horses:</b> {% if tribe %}{{ tribe.horses }}{% endif %}
+                </p>
+                <p>
+                    <b>Dogs:</b> {% if tribe %}{{ tribe.dogs }}{% endif %}
+                </p>
+                <p>
+                    <b>Focus:</b> {% if tribe.focus is null %}None{% else %}{{ tribe.focus }}{% endif %}
+                </p>
+                <p>
+                    <b>Direction:</b> {% if tribe.direction is null %}None{% else %}{{ tribe.direction}}{% endif %}
+                </p>
+                <p>
+                    <b>Day:</b> {% if tribe %}{{ tribe.day }}{% else %}ERROR{% endif %}
+                </p>
 
-            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
-
-            <h3>
-                Tribal Management Choices:
-            </h3>
-            <p>
-            <a href="{{ path('app_changeName') }}">Update your name</a>
-            </p>
-            <p>
-            {#            Focus#}
-            <a href="{{ path('app_changeFocus') }}">Update your focus</a>
-            </p>
-            <p>
-            {#            Direction#}
-            <a href="{{ path('app_changeDirection') }}">Update your direction</a>
-            </p>
-            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
-{#            //Development ONLY day button#}
-            <p>Click below to make day go by</p>
-            <a href="{{ path('tribal_endturn') }}">End Day/Turn</a>
-
-            <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
-
-            <a href="{{ path('app_logout') }}">LOG OUT</a>
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
 
 
+                <h3>
+                    Scouting Reports:
+                </h3>
+
+                <h4>Here: </h4>
+                <p>You are at '{{ tribe.Location.Name }}'.<p></p> {{ Locale.Description }}<p></p> The local fertility is {{ Locale.fertility }}. The local danger is {{ Locale.danger }}. The type is {{ Locale.type }}</p><h4>{{ Locale }}</h4>
+                <h4>North: {{ Locale.North }}</h4>
+                <h4>East: {{ Locale.East }}</h4>
+                <h4>South: {{ Locale.South }}</h4>
+                <h4>West: {{ Locale.West }}</h4>
+
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
+                <p>
+                    <b>Sedentism:</b> {% if tribe %}{{ tribe.sedentism }}{% else %}ERROR{% endif %}
+                </p>
+
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
+
+                <h3>
+                    Tribal Management Choices:
+                </h3>
+                <p>
+                <a href="{{ path('app_changeName') }}">Update your name</a>
+                </p>
+                <p>
+                {#            Focus#}
+                <a href="{{ path('app_changeFocus') }}">Update your focus</a>
+                </p>
+                <p>
+                {#            Direction#}
+                <a href="{{ path('app_changeDirection') }}">Update your direction</a>
+                </p>
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+    {#            //Development ONLY day button#}
+                <p>Click below to make day go by</p>
+                <a href="{{ path('tribal_endturn') }}">End Day/Turn</a>
+
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
+                <a href="{{ path('app_logout') }}">LOG OUT</a>
+
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+                <p>__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-__</p>
+
+                <a href="{{ path('tribal_restart') }}">!!!RESTART THE GAME!!!</a>
+            {% else %}
+                <h3>
+                    Hello, {{ user.email }}!
+                </h3>
+
+                <h2>Game Over! Your Tribe is dead!</h2>
+                <h4>When your number of adults reaches 0 your tribe dies because there is no one for the elders and children, as well as babies, to fend for them. Dogs can only be so good a boi. And horses don't have hands.</h4>
+
+                <a href="{{ path('tribal_restart') }}">Restart with a fresh tribe state at day 0!</a>
+
+                <a href="{{ path('app_logout') }}">LOG OUT</a>
+            {% endif %}
         {% else %}
 
             <h3>

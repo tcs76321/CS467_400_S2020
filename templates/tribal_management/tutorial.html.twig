@@ -13,23 +13,46 @@
         <h3>Tutorial</h3>
 
         <p>Each 'day' you decide upon the aims of your tribe. This includes things like direction, and focus.</p>
-        <p>Currently focus can be set but does nothing.</p>
+        <p>Currently, the options for focus are: 'Settle Area', 'Search for Other Tribes', 'Gather Resources' which is the default and any value in focus other than the first two triggers it.</p>
+        <p>The text you write into focus must be one of these first two options exactly. Capitalization etc. Anything else defaults to gather resources.</p>
+        <p>I would not set focus to be 'Search for Other Tribes' because it does nothing and you lose the bonus of the default gather resources which grows your tribe.</p>
+        <p>Which brings us to how you WIN the game. Your tribe has a sedentism value. Sedentism is the practice of living in one area for a long time.</p>
+        <p>Tribes that migrate around are not sedentary. Tribes that stay in one place long enough and achieve maximum sedentariness become villages.</p>
+        <p>That is the goal for you to achieve.</p>
+        <p>Build up your tribe to be large enough. And then pick where your people will settle, go there, change your direction to be other than below options to stop moving around. And then change your focus to be exactly 'Settle Area' and remain there for 10 turns without your tribe dieing.</p>
+        <p>You will watch your sedentism value rise to 9 and then you will take one more turn and if you had enough adults to survive the turn without hitting 0, you win and the game is restarted.</p>
+        <p>Tribal death and game restart will occur if you reset the game of your own accord, or if your tribe has 0 adults in it.</p>
         <p>Direction is of course where your tribe will be the next 'day'.</p>
         <p>The value you type in for Direction must be exactly one of the following: 'North' 'South' 'East' 'West'</p>
-        <p>Or else, a random valid value may be selected for you.</p>
-        <p>In the completed envision version of gameplay, each 'day' will pass as an actual day in real life. But will be around a few weeks for your virtual in-game tribe.</p>
-        <p>Currently, there is no multi-player either and you simulate days and play the game by clicking a button at the bottom of the tribal management page.</p>
-        <p>The game is essentially in a proof of concept early development phase. All of the dynamics that will make the basic game play, which has been implemented largely, have not been implemented yet.</p>
-        <p>This tutorial will be updated with development</p>
-        <p>Right now you can do the following:</p>
+        <p>In the completed envision version of gameplay, each 'day' will pass as an actual day in real life.
+            <br/>But will be around a few weeks for your virtual in-game tribe.</p>
+        <p>Currently, there is no multi-player for one and you simulate days and play the game by clicking a button at the bottom of the tribal management page.</p>
+        <p>The game is essentially in a proof of concept early development phase. Due to the short time frame and one person working on it.</p>
+        <p>In this final class version you can do the following:</p>
         <p>Create a new account</p>
         <p>Login</p>
-        <p>Read this tutorial</p>
-        <p>Rename your tribe</p>
-        <p>Type in the direction and focus of your tribe</p>
-        <p>Progress a day, and by doing so move around the map and watch day value increase</p>
-        <p>Watch other tribe values increase day by day</p>
-        <p>And logout</p>
-        <h5><a href="{{ path('tribal_management') }}">Back To Home Page</a></h5>
+        <p>Read this tutorial.</p>
+        <p>Rename your tribe.</p>
+        <p>Review the map.</p>
+        <p>Type in the direction and focus of your tribe.</p>
+        <p>Progress a day, and by doing so move around the map and watch day value increase.</p>
+        <p>Watch other tribe values increase day by day.</p>
+        <p>Find which location has the best benefits from danger and fertility values.</p>
+        <p>Optional: Restart the game or die if you choose or your tribe reaches 0 adults or less.</p>
+        <p>Change direction to be something other than 'North' 'South' 'East' or 'West' to stop moving around.</p>
+        <p>Grow your tribe by having any focus other than the 2 unique ones, this triggers the gather resources focus essentially.
+            <br/>Which gives a bonus to all population growths.</p>
+        <p>Get bored of the game.</p>
+        <p>Change focus to 'Settle Area'.</p>
+        <p>Take 10 turns. And watch the sedentism go up to 9 and then last turn, if you dont die, see the victory screen.</p>
+        <p>Be able to logout or restart the game.</p>
+        <p>Restart</p>
+        <p>Be presented with the game play page and with a fresh tribe start state.</p>
+        <p>Finally copy, url with /tribal/management part too. <u>Logout.</u> Paste in URL and be presented a page with link to create a new account.</p>
+        <p>Tips:</p>
+        <p>For testing purposes, I suggest going to The Shores of Lake SriYin for testing winning. And if you want to test your tribe dieing go to the Desperate Cliffs.</p>
+        <p>Another tip would be that when you end your turn. You can end your turn again immediately by refreshing on the 'tribal/endturn' page.</p>
+        <p>And by doing so end several turns in a row quickly and easily.</p>
+        <h5><a href="{{ path('tribal_management') }}">Back To Game Play Page</a></h5>
     </div>
 {% endblock %}

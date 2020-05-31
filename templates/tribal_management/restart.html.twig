@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tribal Restart{% endblock %}
+
+{% block body %}
+    <style>
+        *.body {
+            text-align: center;
+            border: 3px solid green;
+            border-spacing: 10px;
+        }
+    </style>
+
+    <div class="body">
+        <h1>Restarted your tribe and game.</h1>
+        <h5><a href="{{ path('tribal_management') }}">Back To Game Play Page</a></h5>
+    </div>
+{% endblock %}

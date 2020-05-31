@@ -183,10 +183,35 @@ class TribalManagementController extends AbstractController
     {
         $manager = $this->getDoctrine()->getManager();
         $tribe = $this->getUser()->getTribe();
-        $tribe->endDay($tribe, $manager);
 
-        //Redirect back the tribal management page
-        return $this->render('tribal_management/endturn.html.twig', [
+        if($tribe->checkIfAlive())
+        {
+            $tribe->endDay($tribe, $manager);
+            //Redirect back the tribal management page
+            return $this->render('tribal_management/endturn.html.twig', [
+                'controller_name' => 'TribalManagementController'
+            ]);
+        }
+        else
+        {
+            return $this->render('tribal_management/dead.html.twig', [
+                'controller_name' => 'TribalManagementController'
+            ]);
+        }
+    }
+
+    /**
+     * @Route("/tribal/restart", name="tribal_restart")
+     * @return Response
+     */
+    public function restart()
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $tribe = $this->getUser()->getTribe();
+
+        $tribe->reConstruct($manager);
+
+        return $this->render('tribal_management/restart.html.twig', [
             'controller_name' => 'TribalManagementController'
         ]);
     }

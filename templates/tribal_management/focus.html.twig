@@ -12,14 +12,24 @@
     </style>
 
     <div class="body">
-        <h1>Change Focus</h1>
-        <h1>Does Nothing right now</h1>
+        {% if user %}
+            <h1>Change Focus</h1>
+            <h1>Does Nothing right now</h1>
 
-        {{ form_start(form) }}
-        {{ form_row(form.Focus) }}
-        <div><p> </p></div>
-        <button type="submit" class="btn">Submit</button>
-        {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_row(form.Focus) }}
+            <div><p> </p></div>
+            <button type="submit" class="btn">Submit</button>
+            {{ form_end(form) }}
+        {% else %}
+
+            <h3>
+                You are not logged in. Make an account below:
+            </h3>
+            <a href="{{ path('app_register') }}">Create A New User Account</a>
+            <br>
+        {% endif %}
+
 
     </div>
 {% endblock %}
